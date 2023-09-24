@@ -1,5 +1,4 @@
 const NewQuestion = (props) => {
-  console.log(props.qAndA);
 
   return (
     <div className="mb-3">

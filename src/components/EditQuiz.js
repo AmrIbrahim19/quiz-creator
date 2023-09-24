@@ -2,103 +2,94 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
+const EditQuiz = ({ id, title, description, url, currentQuizzes }) => {
+  const [show, setShow] = useState(false);
+
+  const handleModalShow = () => {
+    setShow(true);
+  }
+  const handleClose = () => {
+    setShow(false);
+  }
+
+  // const [tempQuizz, setTempQuiz] = useState([
+  //     {
+  //         description: description,
+  //         title: title,
+  //         url: url,
+  //         questions: {
+  //           text: currentQuizzes[id].questions.text,
+  //           feedbackFalse: null,
+  //           feedbackTrue: null,
+  //           answers: [
+  //             {
+  //               isTrue: null,
+  //               text: null,
+  //             },
+  //             {
+  //               isTrue: null,
+  //               text: null,
+  //             },
+  //             {
+  //               isTrue: null,
+  //               text: null,
+  //             },
+  //           ],
+  //         },
+  //       }
+  // ])
 
 
-
-const EditQuiz = ({id, title, description, url, currentQuizzes}) => {
-console.log(currentQuizzes);
-// const [tempQuizz, setTempQuiz] = useState([
-//     {
-//         description: description,
-//         title: title,
-//         url: url,
-//         questions: {
-//           text: currentQuizzes[id].questions.text,
-//           feedbackFalse: null,
-//           feedbackTrue: null,
-//           answers: [
-//             {
-//               isTrue: null,
-//               text: null,
-//             },
-//             {
-//               isTrue: null,
-//               text: null,
-//             },
-//             {
-//               isTrue: null,
-//               text: null,
-//             },
-//           ],
-//         },
-//       }
-// ])
-
-
-console.log(title)
-
-    return(
-        <div id={id}>
-        <button
-        type="button"
-        className="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdropEdit"
+  return (
+    <div id={id}>
+      <Button
+        variant="primary"
+        onClick={handleModalShow}
       >
-        <FontAwesomeIcon
-          icon={faPenToSquare}
-          style={{ cursor: "pointer" }}
-        />
-      </button>
-      <div
-        className="modal fade"
-        id="staticBackdropEdit"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
+        <FontAwesomeIcon icon={faPenToSquare} style={{ cursor: "pointer" }} />
+      </Button>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
       >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                Edit QUIZ
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <form>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <input
-                    value={title}
-                    type="text"
-                    className="form-control"
-                    // onChange={(e) => {
-                    //   tempQuizz.title = e.target.value;
-                    //   setTempQuiz(tempQuizz);
-                    // }}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Description</label>
-                  <textarea
-                    className="form-control"
-                    id="description"
-                    aria-describedby="description"
-                    // onChange={(e) => {
-                    //     console.log(tempQuizz);
-                    //     tempQuizz.description = e.target.value;
-                    //     setTempQuiz(tempQuizz);
-                    //   }}
-                  />
-                </div>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+         
+        <form>
+        <div className="modal-body">
+          <div className="mb-3">
+            <input
+              value={title}
+              type="text"
+              className="form-control"
+              // onChange={(e) => {
+              //   tempQuizz.title = e.target.value;
+              //   setTempQuiz(tempQuizz);
+              // }}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Description</label>
+            <textarea
+              className="form-control"
+              id="description"
+              aria-describedby="description"
+              // onChange={(e) => {
+              //     console.log(tempQuizz);
+              //     tempQuizz.description = e.target.value;
+              //     setTempQuiz(tempQuizz);
+              //   }}
+            />
+          </div>
 
-                {/* {questions.map((data, idx) => {
+          {/* {questions.map((data, idx) => {
                   return (
                     <NewQuestion
                       id={idx}
@@ -109,43 +100,53 @@ console.log(title)
                     />
                   );
                 })} */}
-                <div className="mb-3">
-                  <input
-                    placeholder="ADD YOUTUBE URL"
-                    type="text"
-                    className="form-control"
-                    // onChange={(e) => {
-                    //   questions[0].url = e.target.value;
-                    //   setQuestions(questions);
-                    // }}
-                  />
-                </div>
-                {/* <button
+          <div className="mb-3">
+            <input
+              placeholder="ADD YOUTUBE URL"
+              type="text"
+              className="form-control"
+              // onChange={(e) => {
+              //   questions[0].url = e.target.value;
+              //   setQuestions(questions);
+              // }}
+            />
+          </div>
+          {/* <button
                   type="button"
                   className="btn btn-primary"
                   onClick={handleAddQuestion}
                 >
                   ADD QUESTION
                 </button> */}
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" data-bs-dismiss="modal"  className="btn btn-primary">
-                  Add Quiz
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
-    </div>
-    )
-}
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            data-bs-dismiss="modal"
+            className="btn btn-primary"
+          >
+            Add Quiz
+          </button>
+        </div>
+      </form>
 
-export default EditQuiz
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">Understood</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+export default EditQuiz;

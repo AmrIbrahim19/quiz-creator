@@ -12,7 +12,7 @@ const Quizzes = () => {
       description: null,
       title: null,
       url: null,
-      questions: {
+      questions: [{
         text: null,
         feedbackFalse: null,
         feedbackTrue: null,
@@ -30,11 +30,12 @@ const Quizzes = () => {
             text: null,
           },
         ],
-      },
+      }],
     },
   ]);
-  console.log(currentQuizzes);
+
   useEffect(() => {
+    console.log(questions);
     questions[0].title !== null &&
       setCurrentQuizzes((prev) => [...prev, ...questions]);
     setQuestions([
